@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Auto Bibliography Generator</title>
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <header>
+    <h1>📚 Auto Bibliography Generator</h1>
+    <p class="sub">Turn your in-text citations &amp; footnotes into a finished bibliography, using your Zotero library.</p>
+  </header>
+
+  <main>
+    <!-- Step 1: setup -->
+    <section id="setup" class="card">
+      <h2>1. Upload &amp; options</h2>
+
+      <div id="zotero-status" class="status">Checking Zotero…</div>
+
+      <label>Word document (.docx)
+        <input type="file" id="file" accept=".docx" />
+      </label>
+
+      <label>Citation style
+        <select id="style"></select>
+      </label>
+
+      <label>Zotero collection (optional — leave as “Entire library”)
+        <select id="collection"><option value="">Entire library</option></select>
+      </label>
+
+      <details>
+        <summary>Zotero not running? Use an exported library file</summary>
+        <label>CSL-JSON export
+          <input type="file" id="library_file" accept=".json" />
+        </label>
+      </details>
+
+      <button id="analyze">Analyze document</button>
+      <div id="setup-msg" class="msg"></div>
+    </section>
+
+    <!-- Step 2: review -->
+    <section id="review" class="card hidden">
+      <h2>2. Review matches</h2>
+      <div id="summary" class="summary"></div>
+
+      <h3>✓ Auto-included <small>(one confident match)</small></h3>
+      <ul id="auto-list" class="list"></ul>
+
+      <h3>❓ Needs your decision <small>(multiple or weak matches)</small></h3>
+      <div id="review-list"></div>
+
+      <h3>⚠ No match <small>(will be flagged with a Word comment)</small></h3>
+      <ul id="none-list" class="list"></ul>
+
+      <button id="generate">Generate bibliography</button>
+      <div id="review-msg" class="msg"></div>
+    </section>
+
+    <!-- Step 3: download -->
+    <section id="done" class="card hidden">
+      <h2>3. Done</h2>
+      <div id="done-stats"></div>
+      <a id="download" class="button" href="#">⬇ Download .docx</a>
+    </section>
+  </main>
+
+  <script src="/app.js"></script>
+</body>
+</html>
